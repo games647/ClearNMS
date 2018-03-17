@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.games647</groupId>
+    <!--This have to be in lowercase because it's used by plugin.yml-->
+    <artifactId>clearnms</artifactId>
+    <packaging>jar</packaging>
+
+    <name>ClearNMS</name>
+    <version>0.1</version>
+
+    <url>https://github.com/games647/ClearNMS</url>
+    <description>
+        Exposing minecraft server internals using ASM.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.9</maven.compiler.source>
+        <maven.compiler.target>1.9</maven.compiler.target>
+    </properties>
+
+    <build>
+        <!--Just use the project name to replace an old version of the plugin if the user does only copy-paste-->
+        <finalName>${project.name}</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--Replace variables-->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <shadedArtifactAttached>false</shadedArtifactAttached>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <!--Bukkit-Server-API -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+
+        <!--NMS repository-->
+        <repository>
+            <id>nms-repo</id>
+            <url>https://repo.codemc.org/repository/nms/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--Server API-->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--NMS-->
+        <!--<dependency>-->
+            <!--<groupId>com.destroystokyo.paper</groupId>-->
+            <!--<artifactId>paper</artifactId>-->
+            <!--<version>1.12.2-R0.1-SNAPSHOT</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!--Library for generating java classes at runtime -->
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,43 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# NetBeans
+nbproject/
+nb-configuration.xml
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Maven
+target/
+
+# Gradle
+.gradle
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# various other potential build files
+build/
+bin/
+dist/
+manifest.mf
+*.log
+
+# Vim
+.*.sw[a-p]
+
+# virtual machine crash logs, see https://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Mac filesystem dust
+.DS_Store
+
