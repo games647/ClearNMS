@@ -12,7 +12,7 @@ import org.objectweb.asm.Type;
 
 public abstract class AdapterFactory<T> implements Opcodes {
 
-    protected static final String PACKAGE_NAME = toExternalName(AdapterFactory.class.getPackageName());
+    protected static final String PACKAGE_NAME = toInternalName(AdapterFactory.class.getPackageName());
     private static final String CONSTRUCTOR_NAME = "<init>";
 
     protected final ServerVersion version;
@@ -35,7 +35,7 @@ public abstract class AdapterFactory<T> implements Opcodes {
         // class should be public and invoke the super class different for exclusive super method calls
         int accessModifier = ACC_PUBLIC + ACC_SUPER;
         String superClass = Type.getInternalName(Object.class); //all classes inherit from Object
-        classWriter.visit(V9, accessModifier, PACKAGE_NAME + className, null, superClass, interfaces);
+        classWriter.visit(V9, accessModifier, PACKAGE_NAME + '/' + className, null, superClass, interfaces);
 
         //add the source file name for stacktraces
         classWriter.visitSource(toExternalName(className), null);

@@ -45,3 +45,9 @@ and generating ASM code of existing Java generated classes. Feel free to use thi
 Note the .class file extension. This means the class have to be compiled first.
 3. Now you get the ASMified code in STDOUT
 4. To compare the code with bytecode run `javap -v PATH_TO_CLASS_FILE.class` (javap is part of the JDK)
+
+## Modules
+
+* Plugin: Core component for generating and building ASM code
+* Demo: How to hook into the plugin
+* Generator: Generate ASMified code from Java classes. Run it with mvn package exec:java
