@@ -18,7 +18,7 @@ version explicitly.
 
 ## Features
 
-* Liberal license
+* Liberal license (Feel free to do what ever you want with the existing code)
 * Do not break between new server versions
 * Generated adapters don't use Reflection at all (better performance)
 

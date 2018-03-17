@@ -12,14 +12,6 @@
     <artifactId>clearnms.generator</artifactId>
     <packaging>jar</packaging>
 
-    <repositories>
-        <!--NMS repository-->
-        <repository>
-            <id>nms-repo</id>
-            <url>https://repo.codemc.org/repository/nms/</url>
-        </repository>
-    </repositories>
-
     <build>
         <plugins>
             <plugin>
@@ -39,6 +31,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <!-- NMS repository -->
+        <repository>
+            <id>nms-repo</id>
+            <url>https://repo.codemc.org/repository/nms/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!--NMS-->

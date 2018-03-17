@@ -20,7 +20,7 @@ public class Generator {
         int flags = ClassReader.SKIP_DEBUG;
 
         // java package path to file system path
-        String path = (NMSPlayer.class.getName()).replace('.', '/') + ".class";
+        String path = (CLASS.getName()).replace('.', '/') + ".class";
 
         //use / to reference the root folder
         try (InputStream in = Generator.class.getResourceAsStream('/' + path)) {

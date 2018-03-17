@@ -67,5 +67,27 @@
             <artifactId>asm</artifactId>
             <version>6.1</version>
         </dependency>
+
+        <!--NMS-->
+        <dependency>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mocking test classes -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+            <version>2.15.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>hamcrest-core</artifactId>
+                    <groupId>org.hamcrest</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 </project>
