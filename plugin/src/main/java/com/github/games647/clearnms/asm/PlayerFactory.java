@@ -28,6 +28,7 @@ public class PlayerFactory extends AdapterFactory<PlayerAdapter> {
         // content
         visitEmptyCons(classWriter);
         visitPingMethod(classWriter);
+        visitCreditsMethod(classWriter);
 
         // build class bytes
         classWriter.visitEnd();
@@ -56,5 +57,29 @@ public class PlayerFactory extends AdapterFactory<PlayerAdapter> {
         // We only need to store one thing at the same time (-> 1 stack) and two local variables this and player
         pingVisitor.visitMaxs(1, 2);
         pingVisitor.visitEnd();
+    }
+
+    private void visitCreditsMethod(ClassWriter classWriter) {
+        // player as parameter and boolean as return
+        String methodDesc = '(' + Type.getDescriptor(Player.class) + ")Z";
+        MethodVisitor creditsVisitor = classWriter.visitMethod(ACC_PUBLIC, "isViewingCredits", methodDesc, null, null);
+        creditsVisitor.visitCode();
+
+        // cast to CraftPlayer and save on stack
+        creditsVisitor.visitVarInsn(ALOAD, 1);
+        String craftPlayerType = getOBCPackage() + "/entity/CraftPlayer";
+        creditsVisitor.visitTypeInsn(CHECKCAST, craftPlayerType);
+
+        // fetch the NMS EntityPLayer form OBC CraftPlayer
+        String descriptor = "()L" + getNMSPackage() + "/EntityPlayer;";
+        creditsVisitor.visitMethodInsn(INVOKEVIRTUAL, craftPlayerType, "getHandle", descriptor, false);
+
+        // fetch the boolean field and return
+        creditsVisitor.visitFieldInsn(GETFIELD, getNMSPackage() + "/EntityPlayer", "viewingCredits", "Z");
+        creditsVisitor.visitInsn(IRETURN);
+
+        // one stack element is enought and two local variables for player and this
+        creditsVisitor.visitMaxs(1, 2);
+        creditsVisitor.visitEnd();
     }
 }

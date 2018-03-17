@@ -12,4 +12,10 @@ public interface PlayerAdapter {
      * @return the ping in ms
      */
     int getPing(Player player);
+
+    /**
+     * @param player Bukkit player
+     * @return true if the credits screen is showing to the client
+     */
+    boolean isViewingCredits(Player player);
 }

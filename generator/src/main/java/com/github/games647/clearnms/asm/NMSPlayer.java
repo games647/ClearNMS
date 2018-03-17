@@ -11,4 +11,9 @@ public class NMSPlayer implements PlayerAdapter {
     public int getPing(Player player) {
         return ((CraftPlayer) player).getHandle().ping;
     }
+
+    @Override
+    public boolean isViewingCredits(Player player) {
+        return ((CraftPlayer) player).getHandle().viewingCredits;
+    }
 }
