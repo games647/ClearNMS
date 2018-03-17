@@ -18,7 +18,15 @@ public class PlayerFactory extends AdapterFactory<PlayerAdapter> {
 
     @Override
     public PlayerAdapter createAdapter() throws ReflectiveOperationException {
-        return (PlayerAdapter) defineClass(createAdapterClass()).getConstructor().newInstance();
+        Class<?> playerClazz;
+        try {
+            //we are only allowed to define a class once. This loads already generated classes since last JVM startup
+            playerClazz = Class.forName(getClass().getPackageName() + '.' + PLAYER_CLASS);
+        } catch (ClassNotFoundException classNotFoundEx) {
+            playerClazz = defineClass(createAdapterClass());
+        }
+
+        return (PlayerAdapter) playerClazz.getConstructor().newInstance();
     }
 
     @Override
